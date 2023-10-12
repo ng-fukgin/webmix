@@ -16,65 +16,25 @@ But this is just our first step. We believe that community strength is essential
 
 If you are passionate about web development and have an unwavering pursuit of innovation and excellence, please join us! Let's work together to create a powerful, flexible, and user-friendly web request library that serves developers worldwide.
 
-`web_utils.py` contains a class named **WebFetcher**, which offers various methods for fetching web content.
+## Installation
 
+You can install the package using pip:
 
-import library
---
+```bash
+pip install webmix
 ```
-import requests
-from urllib import request, parse, error
-from selenium import webdriver
-from selenium.common.exceptions import WebDriverException
-from webdriver_manager.chrome import ChromeDriverManager
+or 
+```bash
+pip3 install webmix
 ```
+    
+Alternatively, you can clone the repository from GitHub and install it manually:
 
-The WebFetcher class
-------------
-
-### initialization
+```bash
+git clone https://github.com/ng-fukgin/webmix
+cd webmix
+python setup.py install
 ```
-def __init__(self, backend='requests'):
-    self.backend = backend
-    self.driver = None
- ```
-
-Initialize the WebFetcher class with the backend parameter (default is 'requests').
-
-### request
-```
-def request(self, method, url, **kwargs):
-    ...
-```
-
-Send an HTTP request. The supported methods are GET, POST, PUT, and DELETE. You can use 'requests', 'urllib', or 'selenium' as a backend to send requests.
-
-### Selenium Helper Methods
-
-
-*   **fill_form_by_id**: Fill in form elements by ID.
-*   **click_button_by_id**: Click buttons by ID.
-*   **scroll_to_bottom**: Scroll to the bottom of the page.
-*   **execute_script**: Execute JavaScript scripts.
-
-
-### close
-```
-def close(self):
-    ...
-```
-
-If you're using **Selenium** as a backend, this method will close the **WebDriver** session.
-
-### HTTP Methods
-
-*   **get**: Send a GET request.
-*   **post**: Send a POST request.
-*   **put**: Send a PUT request.
-*   **delete**: Send a DELETE request.
-
-These methods are convenient forms of the **request** method for sending specific HTTP requests.
-
 
 
 

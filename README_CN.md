@@ -16,62 +16,22 @@ web\_utils.py 库: 为Web请求提供统一解决方案
 
 
 
-`web_utils.py` 包含一个名为 **WebFetcher** 的类，该类提供多种方法用于抓取网络内容。
-
-导入
---
+## 安装
+你可以使用pip安装这个库:
+```bash
+pip install webmix
 ```
-import requests
-from urllib import request, parse, error
-from selenium import webdriver
-from selenium.common.exceptions import WebDriverException
-from webdriver_manager.chrome import ChromeDriverManager
+或者
+```bash
+pip3 install webmix
 ```
-
-WebFetcher 类
-------------
-
-### 初始化
-```
-def __init__(self, backend='requests'):
-    self.backend = backend
-    self.driver = None
- ```
-
-使用 backend 参数（默认值为 'requests'）初始化 WebFetcher 类。
-
-### 请求
-```
-def request(self, method, url, **kwargs):
-    ...
+另外，你也可以从GitHub克隆这个仓库并手动安装:
+```bash
+git clone https://github.com/ng-fukgin/webmix
+cd webmix
+python setup.py install
 ```
 
-发送HTTP请求。支持的方法有 GET、POST、PUT 和 DELETE。可以使用 'requests', 'urllib' 或 'selenium' 作为后端来发送请求。
-
-### Selenium 助手方法
-
-
-*   **fill\_form\_by\_id**: 根据ID填写表单元素
-*   **click\_button\_by\_id**: 根据ID点击按钮
-*   **scroll\_to\_bottom**: 滚动到页面底部
-*   **execute\_script**: 执行JavaScript脚本
-
-### 关闭
-```
-def close(self):
-    ...
-```
-
-如果使用了 Selenium 作为后端，此方法会关闭 WebDriver 会话。
-
-### HTTP方法
-
-*   **get**: 发送GET请求
-*   **post**: 发送POST请求
-*   **put**: 发送PUT请求
-*   **delete**: 发送DELETE请求
-
-这些方法是 **request** 方法的简便形式，用于发送指定的HTTP请求。
 
 
 
