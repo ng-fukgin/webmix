@@ -2,13 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name='webmix',
-    version='0.0.3',
+    version='0.0.4',
     author='wfj',
     author_email='wfj.0000@gmail.com',
-    description='一组实用程序，用于网页抓取和自动化，支持多种后端：requests、urllib和selenium。',
+    description='A set of utilities for web scraping and automation, supporting multiple backends: requests, urllib, and selenium.',
     long_description=open('README.md', encoding='utf-8').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/ng-fukgin/webutils',
+    url='https://github.com/ng-fukgin/webmix',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
@@ -21,7 +21,7 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Operating System :: OS Independent',
     ],
-    keywords='webutils, 网页抓取, 自动化, requests, urllib, selenium',
+    keywords='webmix, 网页抓取, 自动化, requests, urllib, selenium, web scraping, automation ',
     python_requires='>=3.7',
     install_requires=[
         'requests',
@@ -29,9 +29,9 @@ setup(
         'webdriver_manager',
     ],
     project_urls={
-        'Bug Tracker': 'https://github.com/ng-fukgin/webutils/issues',
-        'Documentation': 'https://github.com/ng-fukgin/webutils/wiki',
-        'Source Code': 'https://github.com/ng-fukgin/webutils',
+        'Bug Tracker': 'https://github.com/ng-fukgin/webmix/issues',
+        'Documentation': 'https://github.com/ng-fukgin/webmix/wiki',
+        'Source Code': 'https://github.com/ng-fukgin/webmix',
     },
     license='MIT',
     platforms='any',
