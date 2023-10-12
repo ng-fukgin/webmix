@@ -1,20 +1,25 @@
 
-web\_utils.py 库: 为Web请求提供统一解决方案
+**web_utils.py Library: Providing a Unified Solution for Web Requests**
 ===============================
-
-在数字时代，数据从未如此重要。每天，开发者、数据科学家和业务分析师都在努力从Web上获取、分析和利用数据。然而，当前的Web请求库种类繁多，每个库都有其独特的接口和使用方法。这不仅使得学习和切换成本变得很高，还为代码引入了复杂性和不稳定性。
-
-**WebFetcher** 库的诞生源于对统一、高效和简便的Web请求解决方案的渴望。无论你背后使用的是requests、urllib还是Selenium，**WebFetcher** 为你提供了一个统一的、简洁的接口。这意味着你可以在不更改任何核心代码的情况下自由切换后端技术，保证了代码的可读性和可维护性。
-
-但这仅仅是我们的第一步。我们相信，为了使这个库真正具有影响力和广泛的应用，社区的力量是必不可少的。无论你是新手还是资深开发者，我们都诚挚地邀请你参与到这个项目中来。不仅可以通过提交代码和改进功能来贡献，还可以通过分享你的使用经验和建议来帮助我们。只有大家携手合作，**WebFetcher** 才能真正成为每个开发者工具箱中的必备工具。
-
-如果你对Web开发充满热情，对创新和卓越有着不懈的追求，那么请加入我们！让我们共同打造一个强大、灵活且易于使用的Web请求库，为全球的开发者提供服务。
+[English Documentation](README.md) | [中文文档](README_CN.md)
+> **Note:**
+>If there is a conflict between the Chinese and English documents, please prioritize the English document.
 
 
 
-`web_utils.py` 包含一个名为 **WebFetcher** 的类，该类提供多种方法用于抓取网络内容。
 
-导入
+In the digital age, data has never been more important. Every day, developers, data scientists, and business analysts are striving to retrieve, analyze, and leverage data from the web. However, there is currently a wide variety of web request libraries, each with its unique interface and usage methods. This not only makes learning and switching costly but also introduces complexity and instability into the code.
+
+The birth of the **WebFetcher** library stems from the desire for a unified, efficient, and straightforward solution for web requests. Whether you are using requests, urllib, or Selenium under the hood, **WebFetcher** provides you with a unified and concise interface. This means you can freely switch backend technologies without altering any core code, ensuring code readability and maintainability.
+
+But this is just our first step. We believe that community strength is essential to making this library truly influential and widely used. Whether you are a beginner or an experienced developer, we sincerely invite you to participate in this project. You can contribute not only by submitting code and improving features but also by sharing your usage experience and suggestions to help us. Only through cooperation can **WebFetcher** truly become an essential tool in every developer's toolbox.
+
+If you are passionate about web development and have an unwavering pursuit of innovation and excellence, please join us! Let's work together to create a powerful, flexible, and user-friendly web request library that serves developers worldwide.
+
+`web_utils.py` contains a class named **WebFetcher**, which offers various methods for fetching web content.
+
+
+import library
 --
 ```
 import requests
@@ -24,57 +29,60 @@ from selenium.common.exceptions import WebDriverException
 from webdriver_manager.chrome import ChromeDriverManager
 ```
 
-WebFetcher 类
+The WebFetcher class
 ------------
 
-### 初始化
+### initialization
 ```
 def __init__(self, backend='requests'):
     self.backend = backend
     self.driver = None
  ```
 
-使用 backend 参数（默认值为 'requests'）初始化 WebFetcher 类。
+Initialize the WebFetcher class with the backend parameter (default is 'requests').
 
-### 请求
+### request
 ```
 def request(self, method, url, **kwargs):
     ...
 ```
 
-发送HTTP请求。支持的方法有 GET、POST、PUT 和 DELETE。可以使用 'requests', 'urllib' 或 'selenium' 作为后端来发送请求。
+Send an HTTP request. The supported methods are GET, POST, PUT, and DELETE. You can use 'requests', 'urllib', or 'selenium' as a backend to send requests.
 
-### Selenium 助手方法
+### Selenium Helper Methods
 
 
-*   **fill\_form\_by\_id**: 根据ID填写表单元素
-*   **click\_button\_by\_id**: 根据ID点击按钮
-*   **scroll\_to\_bottom**: 滚动到页面底部
-*   **execute\_script**: 执行JavaScript脚本
+*   **fill_form_by_id**: Fill in form elements by ID.
+*   **click_button_by_id**: Click buttons by ID.
+*   **scroll_to_bottom**: Scroll to the bottom of the page.
+*   **execute_script**: Execute JavaScript scripts.
 
-### 关闭
+
+### close
 ```
 def close(self):
     ...
 ```
 
-如果使用了 Selenium 作为后端，此方法会关闭 WebDriver 会话。
+If you're using **Selenium** as a backend, this method will close the **WebDriver** session.
 
-### HTTP方法
+### HTTP Methods
 
-*   **get**: 发送GET请求
-*   **post**: 发送POST请求
-*   **put**: 发送PUT请求
-*   **delete**: 发送DELETE请求
+*   **get**: Send a GET request.
+*   **post**: Send a POST request.
+*   **put**: Send a PUT request.
+*   **delete**: Send a DELETE request.
 
-这些方法是 **request** 方法的简便形式，用于发送指定的HTTP请求。
+These methods are convenient forms of the **request** method for sending specific HTTP requests.
 
 
 
-使用 `WebFetcher` 类的示例
---------------------
 
-### 使用 requests 作为后端
+#### Using the `WebFetcher` Class
+
+### Using `requests` as the Backend
+
+To use the `WebFetcher` class with `requests` as the backend, you can follow these steps:
 ```
 from web_utils import WebFetcher
 
@@ -84,21 +92,25 @@ print(response)
 
 ```
 
-### 使用 urllib 作为后端
+### Using `urllib` as the Backend
+
+To use the `WebFetcher` class with `urllib` as the backend, you can follow these steps:
 
 ```
 fetcher = WebFetcher(backend='urllib')
 response = fetcher.get("https://example.com")
 print(response)
 ```
+### Using `selenium` as the Backend
 
-### 使用 selenium 作为后端
+To use the `WebFetcher` class with `selenium` as the backend, you can follow these steps:
+
 ```
 fetcher = WebFetcher(backend='selenium')
 response = fetcher.get("https://example.com")
 print(response)
 ```
-# 使用 Selenium 助手方法
+#  Selenium Helper Methods
 ```
 fetcher.scroll_to_bottom()
 fetcher.fill_form_by_id("myFormId", "Some Value")
@@ -106,6 +118,7 @@ fetcher.click_button_by_id("myButtonId")
 script_output = fetcher.execute_script("return document.title;")
 print(script_output)
 
-fetcher.close()  # 关闭 WebDriver 会话
+fetcher.close()  # close the `WebDriver` session
 ```
-请注意，使用 Selenium 可能需要额外的设置，例如安装相应的浏览器驱动。
+Note that using Selenium may require additional setup, such as installing the appropriate browser driver.
+
