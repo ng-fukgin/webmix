@@ -40,7 +40,7 @@ python setup.py install
 
 ### 使用 requests 作为后端
 ```
-from web_utils import WebFetcher
+from webmix.web_utils import WebFetcher
 
 fetcher = WebFetcher(backend='requests')
 response = fetcher.get("https://example.com")

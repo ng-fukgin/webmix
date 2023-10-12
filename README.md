@@ -44,7 +44,7 @@ python setup.py install
 
 To use the `WebFetcher` class with `requests` as the backend, you can follow these steps:
 ```
-from web_utils import WebFetcher
+from webmix.web_utils import WebFetcher
 
 fetcher = WebFetcher(backend='requests')
 response = fetcher.get("https://example.com")

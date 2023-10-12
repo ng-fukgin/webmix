@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='webmix',
-    version='0.0.1',
+    version='0.0.3',
     author='wfj',
     author_email='wfj.0000@gmail.com',
     description='一组实用程序，用于网页抓取和自动化，支持多种后端：requests、urllib和selenium。',
