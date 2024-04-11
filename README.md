@@ -20,16 +20,24 @@ If you are passionate about web development and have an unwavering pursuit of in
 
 You can install the package using pip:
 
-`pip install webmix`  
-`pip3 install webmix`
+```bash
+pip install webmix
+```
+or
+```bash
+pip3 install webmix
+```
 
 Alternatively, you can clone the repository from GitHub and install it manually:
 
-`git clone https://github.com/ng-fukgin/webmix`  
-`cd webmix`  
-`python setup.py install`
+```bash
+git clone https://github.com/ng-fukgin/webmix
+cd webmix
+python setup.py install
+```
 
-## Using the WebFetcher Class
+
+# Using the `WebFetcher` Class
 
 ### Using `requests` as the Backend
 ```
@@ -54,7 +62,7 @@ response = fetcher.get("https://example.com")
 print(response)
   ```      
 
-### Selenium Helper Methods
+## Selenium Helper Methods
 ```
 fetcher.scroll_to_bottom()
 fetcher.fill_form_by_id("myFormId", "Some Value")
@@ -69,7 +77,7 @@ Note that using Selenium may require additional setup, such as installing the ap
 
 ### Additional Methods with Selenium
 
-The WebFetcher class provides a host of helper methods to facilitate interaction with web elements when using the Selenium backend:
+The `WebFetcher` class provides a host of helper methods to facilitate interaction with web elements when using the Selenium backend:
 
 *   `find_element_by_id`: Locate an element by its ID.
 *   `find_element_by_name`: Locate an element by its name attribute.
@@ -85,7 +93,7 @@ The WebFetcher class provides a host of helper methods to facilitate interaction
 
 ### Other Request Methods
 
-WebFetcher also supports making HTTP requests with a variety of backends:
+`WebFetcher` also supports making HTTP requests with a variety of backends:
 
 *   `_request_with_requests`: Execute an HTTP request using the requests library.
 *   `_request_with_urllib`: Execute an HTTP request using the urllib library.
@@ -123,3 +131,24 @@ asyncio.run(fetch_data())
 |---------|-------------|
 | 0.0.4   | Initial release with basic functionalities working as expected. |
 | 0.0.5   | Introduced support for `http.client` and `aiohttp` backends. Extended the list of methods available for Selenium integration. |
+| 0.0.6   | Added Proxy Support: Added support for proxies to enable
+
+ the use of proxy servers for network requests. |
+
+#   To-Do List:
+
+- [ ] User-Agent Randomization: Randomly select a user-agent header during requests, which can be achieved by maintaining a list of user-agent headers.
+- [ ] Cookie Management: Allow users to pass and manage cookies in requests, which can be achieved using the cookies parameter provided by the requests library.
+- [ ] Connection Pool Management: Maintain a connection pool to improve performance, which can be achieved using the Session object provided by the requests library for connection reuse.
+- [ ] Custom Timeout Settings: Allow users to set request timeout duration, which can be achieved using the timeout parameter provided by the requests library.
+- [ ] Redirection Handling: Add support for handling redirects and provide options to control whether to automatically follow redirects, which can be controlled using the allow_redirects parameter.
+- [ ] SSL Certificate Verification: Allow users to control SSL certificate verification, which can be achieved using the verify parameter provided by the requests library.
+- [ ] Logging: Add logging functionality to log errors and warnings, which can be achieved using Python's built-in logging module.
+- [ ] User Interface Interaction: Provide an interactive interface, which can be implemented using command-line interaction or GUI libraries.
+- [ ] Concurrent Request Support: Add support for concurrent requests, which can be achieved using asynchronous libraries such as asyncio and aiohttp.
+- [ ] Page Content Parsing: Add functionality for parsing page content, which can be achieved using parsing libraries such as BeautifulSoup and lxml.
+- [ ] HTTP/2 Support: Implement support for the HTTP/2 protocol if needed, which can be achieved using libraries that support HTTP/2.
+- [ ] Custom Request Headers: Allow users to set custom request headers, which can be achieved using the headers parameter.
+- [ ] HTTP Authentication Support: Add support for basic and digest HTTP authentication, which can be achieved using the auth parameter.
+- [ ] Data Caching: Provide data caching functionality, which can be implemented using caching libraries or by maintaining a custom caching system.
+

@@ -1,6 +1,9 @@
 # web_utils.py
 
 import requests
+import random
+import asyncio
+import http.client
 from urllib import request, parse, error
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
@@ -8,21 +11,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
-import http.client
 import aiohttp
-import aiohttp
-import asyncio
-
-
-
 
 class WebFetcher:
     SUPPORTED_METHODS = ['GET', 'POST', 'PUT', 'DELETE']
 
     def __init__(self, backend='requests', loop=None):
-            self.backend = backend
-            self.driver = None
-            self.loop = loop if loop else asyncio.get_event_loop()
+        self.backend = backend
+        self.driver = None
+        self.loop = loop if loop else asyncio.get_event_loop()
 
     async def request(self, method, url, **kwargs):
         if method.upper() not in self.SUPPORTED_METHODS:
@@ -30,16 +27,30 @@ class WebFetcher:
 
         try:
             if self.backend == 'requests':
+                if 'proxy' in kwargs:
+                    proxies = {'http': kwargs['proxy'], 'https': kwargs['proxy']}
+                    kwargs.pop('proxy')
+                    kwargs['proxies'] = proxies
                 return await self.loop.run_in_executor(None, lambda: self._request_with_requests(method, url, **kwargs))
             elif self.backend == 'urllib':
+                if 'proxy' in kwargs:
+                    # Implement proxy support for urllib if needed
+                    pass
                 return await self.loop.run_in_executor(None, lambda: self._request_with_urllib(method, url, **kwargs))
             elif self.backend == 'selenium':
+                if 'proxy' in kwargs:
+                    raise ValueError("Selenium does not support proxies directly.")
                 if method.upper() != 'GET':
                     raise ValueError("Selenium only supports GET method.")
                 return self._get_with_selenium(url)
             elif self.backend == 'http.client':
+                if 'proxy' in kwargs:
+                    # Implement proxy support for http.client if needed
+                    pass
                 return await self.loop.run_in_executor(None, lambda: self._request_with_http_client(method, url, **kwargs))
             elif self.backend == 'aiohttp':
+                if 'proxy' in kwargs:
+                    kwargs['proxy'] = kwargs.pop('proxy')
                 return await self._request_with_aiohttp(method, url, **kwargs)
             else:
                 raise ValueError("Unsupported backend!")
@@ -47,7 +58,8 @@ class WebFetcher:
             print(f"Error encountered: {e}")
             return None
 
-        
+
+
     def find_element_by_id(self, element_id):
         """通过ID查找元素 (Find element by ID)"""
         if not self.driver:
@@ -147,8 +159,6 @@ class WebFetcher:
             self.driver.set_window_size(width, height)
         except WebDriverException as e:
             raise Exception(f"Failed to set window size using selenium: {e}")
-        
-    
 
     def _request_with_requests(self, method, url, **kwargs):
         try:
@@ -176,8 +186,7 @@ class WebFetcher:
                 return response.read().decode('utf-8')
         except error.URLError as e:
             raise Exception(f"Failed to {method} using urllib: {e}")
-        
-        
+
     def _request_with_http_client(self, method, url, **kwargs):
         try:
             connection = http.client.HTTPSConnection(url)  # 或者使用HTTPConnection，具体取决于您的需求
@@ -187,8 +196,6 @@ class WebFetcher:
         except Exception as e:
             raise Exception(f"Failed to {method} using http.client: {e}")
 
-
-
     async def _request_with_aiohttp(self, method, url, **kwargs):
         try:
             async with aiohttp.ClientSession() as session:
@@ -196,7 +203,6 @@ class WebFetcher:
                     return await response.text()
         except Exception as e:
             raise Exception(f"Failed to {method} using aiohttp: {e}")
-
 
     def _get_with_selenium(self, url):
         try:
@@ -224,3 +230,12 @@ class WebFetcher:
 
     def delete(self, url, **kwargs):
         return self.request('DELETE', url, **kwargs)
+
+    def get_random_user_agent(self):
+        USER_AGENTS = [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36",
+            # 添加更多用户代理...
+        ]
+        return random.choice(USER_AGENTS)
+
