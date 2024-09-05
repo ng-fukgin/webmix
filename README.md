@@ -131,9 +131,10 @@ asyncio.run(fetch_data())
 |---------|-------------|
 | 0.0.4   | Initial release with basic functionalities working as expected. |
 | 0.0.5   | Introduced support for `http.client` and `aiohttp` backends. Extended the list of methods available for Selenium integration. |
-| 0.0.6   | Added Proxy Support: Added support for proxies to enable
+| 0.0.6   | Added Proxy Support: Added support for proxies to enable the use of proxy servers for network requests. |
+| 0.0.10  | refactored the code to improve readability and maintainability. | 
 
- the use of proxy servers for network requests. |
+ 
 
 #   To-Do List:
 
